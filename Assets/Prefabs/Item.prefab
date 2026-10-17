@@ -156,6 +156,9 @@ MonoBehaviour:
   Hoverable: 0
   Clickable: 0
   Draggable: 1
+  initialPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  moveSpeed: 0
   ClickBehaviours: []
   HoverBehaviours: []
   UnHoverBehaviours: []
