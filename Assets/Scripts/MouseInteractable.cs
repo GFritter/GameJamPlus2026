@@ -122,7 +122,7 @@ public class MouseInteractable : MonoBehaviour
         }
     }
 
-    public void OnClicked()
+    public virtual void OnClicked()
     {
         foreach(FE_Behaviour Beh in ClickBehaviours)
         {
@@ -130,7 +130,7 @@ public class MouseInteractable : MonoBehaviour
         }
     }
 
-    public void OnRelease()
+    public virtual void OnRelease()
     {
        
 

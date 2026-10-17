@@ -19,6 +19,6 @@ MonoBehaviour:
   active: 0
   serializableNodes:
   - argument_name: calor
-    argument_value: 3
+    argument_value: 7
   - argument_name: toque
-    argument_value: -2
+    argument_value: -5
