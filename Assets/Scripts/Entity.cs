@@ -35,13 +35,18 @@ public class Entity : MonoBehaviour
     public UnityEngine.UI.Slider overloadBar;
 
     public GameObject[] onWinObjects;
+    public List<GameObject> handleObjects;
+    public GameObject barMarker;
+
+ 
 
     void Start()
 
     {
         Elements = new Dictionary<string, float>();
         ProgressBars = new Dictionary<string, UnityEngine.UI.Slider>();
-        TargetValues = new Dictionary<string, float>(); 
+        TargetValues = new Dictionary<string, float>();
+        handleObjects = new List<GameObject>(); 
 
         foreach (Serializable_FE_ArgBehav arg in serializableElements)
         {
@@ -56,8 +61,16 @@ public class Entity : MonoBehaviour
         foreach (Serializable_Bar_Argument sb in  serializableBars)
         {
             ProgressBars.Add(sb.key, sb.bar);
+            ProgressBars[sb.key].value = TargetValues[sb.key];
+            GameObject handleCopy = Instantiate(barMarker, ProgressBars[sb.key].handleRect.gameObject.transform.position, ProgressBars[sb.key].handleRect.gameObject.transform.rotation, ProgressBars[sb.key].transform);
+           
+            handleObjects.Add(handleCopy);
+            ProgressBars[sb.key].interactable = false;
+            ProgressBars[sb.key].handleRect.gameObject.SetActive(false);
+           
             ProgressBars[sb.key].value = Elements[sb.key];
             SetBarColor(sb.key);
+            
             Debug.Log("Setei a bar" +sb.bar.name  + "com o valor" + Elements[sb.key]);
         }
 
