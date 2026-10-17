@@ -8,17 +8,23 @@ public class MouseInteractable : MonoBehaviour
 {
     public bool Hoverable, Clickable, Draggable;
 
+    public Vector3 initialPosition,targetPosition;
+
+    public float moveSpeed;
+
     public FE_Behaviour[] ClickBehaviours;
     public FE_Behaviour[] HoverBehaviours;
     public FE_Behaviour[] UnHoverBehaviours;
 
     public FE_Behaviour[] ReleaseBehaviours;
 
-
+    bool shouldMove;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
+        initialPosition = transform.position;
 
         for(int i=0;i<ClickBehaviours.Length;++i)
         {
@@ -72,7 +78,32 @@ public class MouseInteractable : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(shouldMove)
+        {
+            MoveTo();
+        }
         
+    }
+
+    void MoveTo()
+    {
+        this.transform.position = Vector3.Lerp(this.transform.position, targetPosition, moveSpeed * Time.deltaTime) ;
+
+        if(Vector3.Distance(this.transform.position,targetPosition)<0.01f)
+        {
+            shouldMove = false;
+        }
+    }
+
+    public void SetMoveTarget(Vector3 movePos)
+    {
+        targetPosition = movePos;
+        shouldMove = true;
+    }
+
+    public void ReturnToInitialPosition()
+    {
+        SetMoveTarget(initialPosition);
     }
 
     public void OnHover()
@@ -101,12 +132,14 @@ public class MouseInteractable : MonoBehaviour
 
     public void OnRelease()
     {
-        Debug.Log("On Release Trigger");
+       
 
         foreach (FE_Behaviour Beh in ReleaseBehaviours)
         {
-            Beh.OnActivate();
+            Beh.OnActivate(); 
         }
+
+        ReturnToInitialPosition();
     }
 
 
