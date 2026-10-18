@@ -186,7 +186,8 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   moveSpeed: 0.5
-  ClickBehaviours: []
+  ClickBehaviours:
+  - {fileID: 11400000, guid: 6cd38034ee315e44b8ffb8d41b3a2550, type: 2}
   HoverBehaviours: []
   UnHoverBehaviours: []
   ReleaseBehaviours:
