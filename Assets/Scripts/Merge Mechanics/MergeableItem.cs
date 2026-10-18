@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System;
 using UnityEngine;
 
@@ -18,9 +19,33 @@ public class MergeableItem : MouseInteractable
 
     public VisualElement visualElement;
 
+    public GameObject ParticlePrefab;
+    public List<GameObject> particles; 
+
+    public override void OnHover()
+    {
+        base.OnHover();
+
+        foreach(GameObject pS in particles)
+        {
+            pS.SetActive(true);
+        }
+
+    }
+
+    public override void OnHoverEnd()
+    {
+        base.OnHoverEnd();
+        foreach (GameObject pS in particles)
+        {
+            pS.SetActive(false);
+        
+        }
+    }
+
     private void Start()
     {
-
+        particles = new List<GameObject>();
 
         initialPosition = transform.position;
 
@@ -57,7 +82,7 @@ public class MergeableItem : MouseInteractable
             ReleaseBehaviours[i].Init(this.gameObject);
         }
 
-        
+        CreateVisualElement();
 
     }
 
@@ -72,9 +97,22 @@ public class MergeableItem : MouseInteractable
     }
 
 
-    public void ManageVisualElement()
+    public void CreateVisualElement()
     {
-        
+        foreach(var arg in itemValues)
+        {
+            GameObject tempP = Instantiate(ParticlePrefab, this.transform);
+            ParticleSystem ps = tempP.GetComponent<ParticleSystem>();
+
+            ParticleSystem.MainModule m = ps.main;
+            m.startColor = arg.argument_color;
+            m.gravityModifier = -arg.argument_value;
+            m.emitterVelocity *= arg.argument_value;
+
+            tempP.SetActive(false);
+            particles.Add(tempP);
+            
+        }
     }
 
 

@@ -7485,8 +7485,10 @@ MonoBehaviour:
   itemValues:
   - argument_name: calor
     argument_value: 2
+    argument_color: {r: 0, g: 0, b: 0, a: 0}
   - argument_name: toque
     argument_value: -1
+    argument_color: {r: 0, g: 0, b: 0, a: 0}
   itemTier: 1
   visualElement:
     particles: {fileID: 0}
@@ -7522,6 +7524,8 @@ MonoBehaviour:
       m_NumAlphaKeys: 2
     axisKey: 
     managedParameter: 
+  ParticlePrefab: {fileID: 0}
+  particles: []
 --- !u!50 &1024200169
 Rigidbody2D:
   serializedVersion: 5
@@ -10532,6 +10536,10 @@ PrefabInstance:
     - target: {fileID: 8586788172718688232, guid: 56364f2af1a02f64b85248d2156b1f20, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9022225158679933134, guid: 56364f2af1a02f64b85248d2156b1f20, type: 3}
+      propertyPath: m_Name
+      value: BubbleSystem
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

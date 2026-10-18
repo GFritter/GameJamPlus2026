@@ -8,6 +8,8 @@ public struct Serializable_FE_ArgBehav
     public string argument_name;
     public float argument_value;
 
+    public Color argument_color;
+
 
 }
 
