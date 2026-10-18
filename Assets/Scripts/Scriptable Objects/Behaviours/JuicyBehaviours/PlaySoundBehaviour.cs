@@ -20,6 +20,7 @@ public class PlaySoundBehaviour : FE_Behaviour
     public override void OnActivate()
     {
         base.OnActivate();
+        player.clip = audioClip;
         player.Play();
     }
 }

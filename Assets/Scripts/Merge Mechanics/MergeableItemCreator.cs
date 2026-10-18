@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -10,9 +11,14 @@ public class MergeableItemCreator : MonoBehaviour
 
     public FloatRangeParameter itemValueModifierRange;
 
+    public FE_Behaviour[] HoverBehaviours;
+    public FE_Behaviour[] UnHoverBehaviours;
+
     public FE_Behaviour[] OnPreCreateBehaviours, OnPostCreateBehaviours;
 
     public Collider2D spawnTarget;
+    public Color topColor;
+   
 
     public int spawnCost;
 
@@ -32,7 +38,21 @@ public class MergeableItemCreator : MonoBehaviour
             beh.Init(this.gameObject);
         }
 
-        SpawnItems(initialItemsSpawned);
+        for (int i = 0; i < HoverBehaviours.Length; ++i)
+        {
+            HoverBehaviours[i] = Instantiate(HoverBehaviours[i]);
+            HoverBehaviours[i].Init(this.gameObject);
+        }
+
+        for (int i = 0; i < UnHoverBehaviours.Length; ++i)
+        {
+            UnHoverBehaviours[i] = Instantiate(UnHoverBehaviours[i]);
+            UnHoverBehaviours[i].Init(this.gameObject);
+        }
+
+
+        StartCoroutine(InitialDrop());
+      
 
     }
 
@@ -40,6 +60,13 @@ public class MergeableItemCreator : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public IEnumerator InitialDrop()
+    {
+        yield return new  WaitForSecondsRealtime(3f);
+
+        SpawnItems(initialItemsSpawned);
     }
 
     public void SpawnItems()
@@ -120,4 +147,32 @@ public class MergeableItemCreator : MonoBehaviour
 
        
     }
+
+    private void OnMouseEnter()
+    {
+        OnHover();
+    }
+
+    private void OnMouseExit()
+    {
+        OnHoverEnd();
+    }
+
+    public virtual void OnHover()
+    {
+        foreach (FE_Behaviour Beh in HoverBehaviours)
+        {
+            Beh.OnActivate();
+        }
+    }
+
+    public virtual void OnHoverEnd()
+    {
+        foreach (FE_Behaviour Beh in UnHoverBehaviours)
+        {
+            Beh.OnActivate();
+        }
+    }
+
+
 }

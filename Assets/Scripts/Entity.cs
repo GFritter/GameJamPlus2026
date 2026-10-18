@@ -20,6 +20,8 @@ public class Entity : MonoBehaviour
 {
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public FE_Behaviour[] HoverBehaviours;
+    public FE_Behaviour[] UnHoverBehaviours;
 
     public Dictionary<string, float> Elements;
     public Dictionary<string, TwinnedBarEffect> ProgressBars;
@@ -90,6 +92,18 @@ public class Entity : MonoBehaviour
         foreach (FE_Behaviour beh in OnOverloadBehaviours)
         {
             beh.Init(this.gameObject);
+        }
+
+        for (int i = 0; i < HoverBehaviours.Length; ++i)
+        {
+            HoverBehaviours[i] = Instantiate(HoverBehaviours[i]);
+            HoverBehaviours[i].Init(this.gameObject);
+        }
+
+        for (int i = 0; i < UnHoverBehaviours.Length; ++i)
+        {
+            UnHoverBehaviours[i] = Instantiate(UnHoverBehaviours[i]);
+            UnHoverBehaviours[i].Init(this.gameObject);
         }
 
 
@@ -258,5 +272,34 @@ public class Entity : MonoBehaviour
         }
 
     }
+
+
+    private void OnMouseEnter()
+    {
+        OnHover();
+    }
+
+    private void OnMouseExit()
+    {
+        OnHoverEnd();
+    }
+
+    public virtual void OnHover()
+    {
+        foreach (FE_Behaviour Beh in HoverBehaviours)
+        {
+            Beh.OnActivate();
+        }
+    }
+
+    public virtual void OnHoverEnd()
+    {
+        foreach (FE_Behaviour Beh in UnHoverBehaviours)
+        {
+            Beh.OnActivate();
+        }
+    }
+
+
 
 }
