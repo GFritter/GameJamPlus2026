@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8661506221988118862}
   - component: {fileID: 4151683102653969719}
   m_Layer: 0
-  m_Name: MItem_0
+  m_Name: MItem_0 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 7693570747662114384, guid: 662a2b704f0e3144d957d5b085722b09, type: 3}
+  m_Sprite: {fileID: -8872200077480915516, guid: 9a78e537535a523479820a531f4125f7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -133,7 +133,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.93, y: 3.94}
+    oldSize: {x: 3.45, y: 3.09}
     newSize: {x: 1.93, y: 3.94}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -193,12 +193,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3523b9e501ba4d945bfd6fc9c9a089b2, type: 2}
   - {fileID: 11400000, guid: 4f5fbfd20ff877d4c8abf2106844d39c, type: 2}
   itemValues:
-  - argument_name: calor
-    argument_value: 2
-    argument_color: {r: 1, g: 0.45032197, b: 0, a: 1}
   - argument_name: toque
     argument_value: -1
     argument_color: {r: 0.8975028, g: 0.5566037, b: 1, a: 1}
+  - argument_name: Alimento
+    argument_value: 1
+    argument_color: {r: 1, g: 0.90410185, b: 0, a: 1}
   itemTier: 1
   visualElement:
     particles: {fileID: 0}
