@@ -22,6 +22,12 @@ public class IncrementValueByCollider : FE_Behaviour
                     {
                         e.UpdateValue(arg.Key, arg.Value);
                     }
+
+                    if(DestroyOwnerOnActiveEnd)
+                    {
+                        Destroy(Owner);
+                    }
+
                     break;
                 }
             }

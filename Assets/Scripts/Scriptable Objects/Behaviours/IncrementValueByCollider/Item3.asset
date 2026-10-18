@@ -17,6 +17,7 @@ MonoBehaviour:
   ongoing: 0
   shouldEnd: 0
   active: 0
+  DestroyOwnerOnActiveEnd: 1
   serializableNodes:
   - argument_name: calor
     argument_value: 2

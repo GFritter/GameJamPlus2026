@@ -23,6 +23,8 @@ public class Entity : MonoBehaviour
     public Dictionary<string, UnityEngine.UI.Slider> ProgressBars;
     public Dictionary<string, float> TargetValues;
 
+    public float WinThreshold;
+
     public Gradient ColorGradient;
 
     public Serializable_FE_ArgBehav[] serializableElements;
@@ -38,6 +40,11 @@ public class Entity : MonoBehaviour
     public List<GameObject> handleObjects;
     public GameObject barMarker;
 
+    public int overloadBarLives = 3;
+    public GameObject[] OverloadRunes = new GameObject[3];
+
+
+    public FE_Behaviour[] OnOverloadBehaviours;
  
 
     void Start()
@@ -74,6 +81,13 @@ public class Entity : MonoBehaviour
             Debug.Log("Setei a bar" +sb.bar.name  + "com o valor" + Elements[sb.key]);
         }
 
+        foreach (FE_Behaviour beh in OnOverloadBehaviours)
+        {
+            beh.Init(this.gameObject);
+        }
+
+
+        overloadBar.interactable = false;
         
 
     }
@@ -100,16 +114,92 @@ public class Entity : MonoBehaviour
         {
             float v;
             Elements.TryGetValue(key, out v);
-            overloadBar.value += Mathf.Abs(value);
+            IncrementOverloadBar(Mathf.Abs(value));
             v = v + value;
             Elements[key] = v;
 
-            Debug.Log("Alterei o valor" + key + "pra" + v);
+            // Debug.Log("Alterei o valor" + key + "pra" + v);
 
             OnValueUpdated(key);
         }
 
     }
+
+    public void UpdateValueNoOverload(string key, float value)
+    {
+        if (Elements.ContainsKey(key))
+        {
+            float v;
+            Elements.TryGetValue(key, out v);
+          
+            v = v + value;
+            Elements[key] = v;
+
+            // Debug.Log("Alterei o valor" + key + "pra" + v);
+
+            OnValueUpdated(key);
+        }
+
+    }
+
+    public void IncrementOverloadBar(float value)
+    {
+        overloadBar.value += value;
+        CheckBarOverload();
+    }
+
+    void CheckBarOverload()
+    {
+        if (overloadBar.value >= overloadBar.maxValue)
+        {
+            if(overloadBarLives>0)
+            {
+                Debug.Log("Triggei Overload");
+                TriggerOverload();
+            }
+
+            else
+            {
+                TriggerGameOver();
+            }
+        }
+    }
+
+    void TriggerOverload()
+    {
+        Animator anim;
+        if(OverloadRunes[overloadBarLives - 1].TryGetComponent<Animator>(out anim))
+        {
+            anim.SetTrigger("destroy");
+        }
+
+
+        OverloadRunes[overloadBarLives - 1].SetActive(false);
+
+        //spawnar alguma particula alguma coisa
+        foreach (FE_Behaviour beh in OnOverloadBehaviours)
+        {
+            beh.OnActivate();
+        }
+
+
+        foreach(var bar in ProgressBars )
+        {
+            float value = bar.Value.value * (0.2f * (Mathf.Abs(overloadBarLives-4)));
+            float offset = bar.Value.value - value;
+            UpdateValueNoOverload(bar.Key,-offset);
+        }
+
+        overloadBar.value = 0;
+        overloadBarLives --;
+
+    }
+
+    void TriggerGameOver()
+    {
+        Debug.Log("Triggei Game Over");
+    }
+
 
     void SetBarColor(string key)
     {
@@ -130,7 +220,7 @@ public class Entity : MonoBehaviour
 
         foreach (KeyValuePair<string, float> element in Elements)
         {
-            if (element.Value == TargetValues[element.Key])
+            if (Mathf.Abs(element.Value - TargetValues[element.Key])<=WinThreshold)
             {
                 won = true;
             }

@@ -31,6 +31,8 @@ public class FE_Behaviour : ScriptableObject,ISerializationCallbackReceiver
     [SerializeField()]
     public bool active;
 
+    public bool DestroyOwnerOnActiveEnd;
+
     public List<Serializable_FE_ArgBehav> serializableNodes;
 
     public void OnBeforeSerialize()

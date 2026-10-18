@@ -168,6 +168,8 @@ public class MergeableItemHolder : MouseInteractable
         {
             GameObject.Destroy(goItem);
         }
+
+        ItemValues.Clear();
     }
 
     public override void OnClicked()

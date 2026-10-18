@@ -132,7 +132,14 @@ public class MouseInteractable : MonoBehaviour
 
     public virtual void OnRelease()
     {
-       
+       if(Draggable)
+        {
+            Rigidbody2D rb;
+            if (this.gameObject.TryGetComponent<Rigidbody2D>(out rb))
+            {
+                rb.bodyType = RigidbodyType2D.Dynamic;
+            }
+        }
 
         foreach (FE_Behaviour Beh in ReleaseBehaviours)
         {
@@ -169,6 +176,12 @@ public class MouseInteractable : MonoBehaviour
     {
         if(Draggable)
         {
+            Rigidbody2D rb;
+            if (this.gameObject.TryGetComponent<Rigidbody2D>(out rb))
+            {
+                rb.bodyType = RigidbodyType2D.Kinematic;
+            }
+
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.value);
             mousePos.z = 0;
             this.gameObject.transform.position = mousePos;
