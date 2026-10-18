@@ -199,7 +199,8 @@ public class MergeableItemHolder : MouseInteractable
         }
 
         ItemValues.Clear();
-
+        ItemColors.Clear();
+        mItemsList.Clear();
         itemTop.SetActive(false);
     }
 

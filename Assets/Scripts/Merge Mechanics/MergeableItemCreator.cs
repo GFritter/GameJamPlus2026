@@ -17,8 +17,7 @@ public class MergeableItemCreator : MonoBehaviour
     public FE_Behaviour[] OnPreCreateBehaviours, OnPostCreateBehaviours;
 
     public Collider2D spawnTarget;
-    public Color topColor;
-   
+ 
 
     public int spawnCost;
 
