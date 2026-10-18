@@ -196,7 +196,7 @@ MonoBehaviour:
   - argument_name: toque
     argument_value: -1
     argument_color: {r: 1, g: 0, b: 0.67058825, a: 1}
-  - argument_name: Alimento
+  - argument_name: alimento
     argument_value: 1
     argument_color: {r: 1, g: 0.90410185, b: 0, a: 1}
   itemTier: 1

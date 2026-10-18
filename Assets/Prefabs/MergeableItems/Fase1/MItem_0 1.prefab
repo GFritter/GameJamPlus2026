@@ -192,6 +192,7 @@ MonoBehaviour:
   ReleaseBehaviours:
   - {fileID: 11400000, guid: 3523b9e501ba4d945bfd6fc9c9a089b2, type: 2}
   - {fileID: 11400000, guid: 4f5fbfd20ff877d4c8abf2106844d39c, type: 2}
+  - {fileID: 11400000, guid: 40f766062287e1b4ca1d1c99e90809a4, type: 2}
   itemValues:
   - argument_name: calor
     argument_value: -1
