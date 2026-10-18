@@ -16,6 +16,8 @@ public class MergeableItemHolder : MouseInteractable
 
     public Dictionary<string, float> ItemValues;
 
+    public Collider2D bancadaCollider;
+
     public GameObject mergeableItemPrefab;
 
     public Sprite[] spritesTier1, spritesTier2, spritesTier3, spritesTier4, spritesTier5;
@@ -145,7 +147,9 @@ public class MergeableItemHolder : MouseInteractable
         
         }
 
+        Bounds spawnBounds = bancadaCollider.bounds;
         Vector3 spawnTarget =new Vector2(Random.Range(-SpawnOffsetX, SpawnOffsetX), Random.Range(3, SpawnOffsetY) * -1);
+        spawnTarget = spawnBounds.ClosestPoint(spawnTarget);
         tempMI.moveSpeed = Random.Range(0.1f, 1f);
         tempMI.SetMoveTarget(this.transform.position + spawnTarget);
 

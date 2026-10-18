@@ -79,7 +79,7 @@ public class FE_Behaviour : ScriptableObject,ISerializationCallbackReceiver
 
 
 
-    public void Init(GameObject owner)
+    public virtual void Init(GameObject owner)
     {
         Owner = owner;
         Arguments = new Dictionary<string, float>();

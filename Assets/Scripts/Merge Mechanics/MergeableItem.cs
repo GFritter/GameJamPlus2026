@@ -1,9 +1,22 @@
+using System;
 using UnityEngine;
+
+[Serializable]
+public struct VisualElement
+{
+    public ParticleSystem particles;
+    public Gradient colorGradient;
+    public string axisKey;
+    public string managedParameter;
+
+}
 
 public class MergeableItem : MouseInteractable
 {
     public Serializable_FE_ArgBehav[] itemValues;
     public int itemTier;
+
+    public VisualElement visualElement;
 
     private void Start()
     {
@@ -58,6 +71,11 @@ public class MergeableItem : MouseInteractable
 
     }
 
+
+    public void ManageVisualElement()
+    {
+        
+    }
 
 
     void CheckForMergeableHolders()

@@ -50,6 +50,9 @@ TagManager:
   - name: HandLayer
     uniqueID: 2981062385
     locked: 0
+  - name: ArmLayer
+    uniqueID: 1359647129
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []
