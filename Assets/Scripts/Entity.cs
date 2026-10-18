@@ -10,7 +10,9 @@ public struct Serializable_Bar_Argument
     public string key;
 
     [SerializeField()]    
-    public UnityEngine.UI.Slider bar;
+    public TwinnedBarEffect bar;
+
+    public Color argumentColorEffect;
 }
 
 
@@ -20,7 +22,7 @@ public class Entity : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
     public Dictionary<string, float> Elements;
-    public Dictionary<string, UnityEngine.UI.Slider> ProgressBars;
+    public Dictionary<string, TwinnedBarEffect> ProgressBars;
     public Dictionary<string, float> TargetValues;
 
     public float WinThreshold;
@@ -35,7 +37,7 @@ public class Entity : MonoBehaviour
     public Serializable_Bar_Argument[] serializableBars;
 
     public UnityEngine.UI.Slider overloadBar;
-
+    
     public GameObject[] onWinObjects;
     public List<GameObject> handleObjects;
     public GameObject barMarker;
@@ -51,7 +53,7 @@ public class Entity : MonoBehaviour
 
     {
         Elements = new Dictionary<string, float>();
-        ProgressBars = new Dictionary<string, UnityEngine.UI.Slider>();
+        ProgressBars = new Dictionary<string, TwinnedBarEffect>();
         TargetValues = new Dictionary<string, float>();
         handleObjects = new List<GameObject>(); 
 
@@ -68,14 +70,18 @@ public class Entity : MonoBehaviour
         foreach (Serializable_Bar_Argument sb in  serializableBars)
         {
             ProgressBars.Add(sb.key, sb.bar);
-            ProgressBars[sb.key].value = TargetValues[sb.key];
-            GameObject handleCopy = Instantiate(barMarker, ProgressBars[sb.key].handleRect.gameObject.transform.position, ProgressBars[sb.key].handleRect.gameObject.transform.rotation, ProgressBars[sb.key].transform);
+            
+            ProgressBars[sb.key].underBar.value = TargetValues[sb.key];
+            GameObject handleCopy = Instantiate(barMarker, ProgressBars[sb.key].underBar.handleRect.gameObject.transform.position, ProgressBars[sb.key].underBar.handleRect.gameObject.transform.rotation, ProgressBars[sb.key].transform);
            
             handleObjects.Add(handleCopy);
-            ProgressBars[sb.key].interactable = false;
-            ProgressBars[sb.key].handleRect.gameObject.SetActive(false);
-           
-            ProgressBars[sb.key].value = Elements[sb.key];
+            ProgressBars[sb.key].underBar.interactable = false;
+            ProgressBars[sb.key].overBar.interactable = false;
+            ProgressBars[sb.key].underBar.handleRect.gameObject.SetActive(false);
+            ProgressBars[sb.key].overBar.handleRect.gameObject.SetActive(false);
+
+            ProgressBars[sb.key].underBar.value = Elements[sb.key];
+            ProgressBars[sb.key].overBar.value = Elements[sb.key];
             SetBarColor(sb.key);
             
             Debug.Log("Setei a bar" +sb.bar.name  + "com o valor" + Elements[sb.key]);
@@ -101,7 +107,7 @@ public class Entity : MonoBehaviour
 
     void OnValueUpdated(string key)
     {
-        ProgressBars[key].value = Elements[key];
+        ProgressBars[key].IncrementValue( Elements[key]);
         SetBarColor(key);
         CheckWin();
         Debug.Log("Alterei a bar" + ProgressBars[key].name + "com o valor" + Elements[key]);
@@ -185,8 +191,8 @@ public class Entity : MonoBehaviour
 
         foreach(var bar in ProgressBars )
         {
-            float value = bar.Value.value * (0.2f * (Mathf.Abs(overloadBarLives-4)));
-            float offset = bar.Value.value - value;
+            float value = bar.Value.underBar.value * (0.2f * (Mathf.Abs(overloadBarLives-4)));
+            float offset = bar.Value.underBar.value - value;
             UpdateValueNoOverload(bar.Key,-offset);
         }
 
@@ -204,13 +210,13 @@ public class Entity : MonoBehaviour
     void SetBarColor(string key)
     {
         float targetValue = TargetValues[key];
-        float sliderValue = ProgressBars[key].value;
+        float sliderValue = ProgressBars[key].underBar.value;
 
         float offset = Mathf.Abs(targetValue - sliderValue);
          offset = offset / targetValue;
         Debug.Log("Offset ta em: " + offset);
 
-        ProgressBars[key].fillRect.GetComponent<UnityEngine.UI.Image>().color = ColorGradient.Evaluate(offset);
+        ProgressBars[key].ChangeOverBarColor( ColorGradient.Evaluate(offset));
 
     }
 
