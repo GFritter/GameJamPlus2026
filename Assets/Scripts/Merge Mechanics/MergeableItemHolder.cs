@@ -15,6 +15,7 @@ public class MergeableItemHolder : MouseInteractable
     public FE_Behaviour[] OnMergeBehaviours, OnExpelBehaviours;
 
     public Dictionary<string, float> ItemValues;
+    public Dictionary<string, Color> ItemColors;
 
     public Collider2D bancadaCollider;
 
@@ -27,6 +28,7 @@ public class MergeableItemHolder : MouseInteractable
     {
 
         ItemValues = new Dictionary<string, float>();
+        ItemColors = new Dictionary<string, Color>();
         initialPosition = transform.position;
 
         for (int i = 0; i < ClickBehaviours.Length; ++i)
@@ -103,6 +105,7 @@ public class MergeableItemHolder : MouseInteractable
                 else
                 {
                     ItemValues.Add(arg.argument_name, arg.argument_value);
+                    ItemColors.Add(arg.argument_name, arg.argument_color);
                 }
             }
         }
@@ -128,6 +131,7 @@ public class MergeableItemHolder : MouseInteractable
         {
             tempMI.itemValues[e].argument_name = v.Key;
             tempMI.itemValues[e].argument_value = v.Value;
+            tempMI.itemValues[e].argument_color = ItemColors[v.Key];
             ++e;
         }
 

@@ -106,7 +106,7 @@ public class MouseInteractable : MonoBehaviour
         SetMoveTarget(initialPosition);
     }
 
-    public void OnHover()
+    public virtual void OnHover()
     {
         foreach (FE_Behaviour Beh in HoverBehaviours)
         {
@@ -114,7 +114,7 @@ public class MouseInteractable : MonoBehaviour
         }
     }
 
-    public void OnHoverEnd()
+    public virtual void OnHoverEnd()
     {
         foreach (FE_Behaviour Beh in UnHoverBehaviours)
         {
