@@ -6877,7 +6877,8 @@ MonoBehaviour:
   initialPosition: {x: 0, y: 0, z: 0}
   targetPosition: {x: 0, y: 0, z: 0}
   moveSpeed: 0
-  ClickBehaviours: []
+  ClickBehaviours:
+  - {fileID: 11400000, guid: 30d6897c7db02174389199c3d7dc4bdd, type: 2}
   HoverBehaviours: []
   UnHoverBehaviours: []
   ReleaseBehaviours: []
@@ -6889,6 +6890,7 @@ MonoBehaviour:
   mItemsList: []
   OnMergeBehaviours:
   - {fileID: 11400000, guid: 1176d72c3c231bc4eb7585639a5c7115, type: 2}
+  - {fileID: 11400000, guid: 30d6897c7db02174389199c3d7dc4bdd, type: 2}
   OnExpelBehaviours: []
   bancadaCollider: {fileID: 1301622855}
   mergeableItemPrefab: {fileID: 4238875517541812538, guid: 56364f2af1a02f64b85248d2156b1f20, type: 3}
@@ -8626,6 +8628,7 @@ GameObject:
   - component: {fileID: 1471951554}
   - component: {fileID: 1471951553}
   - component: {fileID: 1471951552}
+  - component: {fileID: 1471951556}
   m_Layer: 0
   m_Name: ItemCreator
   m_TagString: Untagged
@@ -8698,7 +8701,8 @@ MonoBehaviour:
   itemValueModifierRange:
     m_OverrideState: 1
     m_Value: {x: -2, y: 2}
-  OnPreCreateBehaviours: []
+  OnPreCreateBehaviours:
+  - {fileID: 11400000, guid: 85232179dafa53b45932ee499d23feeb, type: 2}
   OnPostCreateBehaviours: []
   spawnTarget: {fileID: 1301622855}
   spawnCost: 10
@@ -8778,6 +8782,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!95 &1471951556
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1471951551}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1d3f3be5d15a8748bc39a2776c54d7e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1527251493
 GameObject:
   m_ObjectHideFlags: 0

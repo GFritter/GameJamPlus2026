@@ -17,7 +17,10 @@ MonoBehaviour:
   ongoing: 0
   shouldEnd: 0
   active: 0
+  DestroyOwnerOnActiveEnd: 0
   serializableNodes: []
   boolArgs: []
   floatArgs: []
-  triggerArgs: []
+  triggerArgs:
+  - argument_name: Merge/Drop
+    argument_value: 0
