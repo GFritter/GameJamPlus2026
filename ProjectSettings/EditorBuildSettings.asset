@@ -7,9 +7,18 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 1
     path: Assets/Scenes/MainMenu.unity
+    guid: a7c48207d4dd1d943b3c95d10df2dfc6
+  - enabled: 1
+    path: Assets/Scenes/EnterHouse.unity
+    guid: 0756a02cdb5060545bfcd54ae31564ee
+  - enabled: 1
+    path: Assets/Scenes/Dialogue.unity
     guid: d2b5d43091381c1448682a7dc64d87f1
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
+  - enabled: 1
+    path: Assets/Scenes/CreatureScene.unity
+    guid: cd35313bc5998c141a3e934bc99d68bd
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
