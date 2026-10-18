@@ -16,6 +16,8 @@ public class MergeableItemCreator : MonoBehaviour
 
     public int spawnCost;
 
+    public int initialItemsSpawned;
+
     public Entity barHolder;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +31,8 @@ public class MergeableItemCreator : MonoBehaviour
         {
             beh.Init(this.gameObject);
         }
+
+        SpawnItems(initialItemsSpawned);
 
     }
 
